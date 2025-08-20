@@ -1,0 +1,94 @@
+#define BLYNK_TEMPLATE_ID "TMPL2SGglIBft"
+#define BLYNK_TEMPLATE_NAME "IoT Smart Irrigation"
+
+#include <ESP8266WiFi.h>
+#include <BlynkSimpleEsp8266.h>
+#include <DHT.h>
+
+#define BLYNK_DEVICE_NAME "IoT Smart Farming"
+#define BLYNK_AUTH_TOKEN "7UtxIwHBlvlR5rbbkcIz-wpv2XtZBy_6"
+
+#define DHTPIN D4      // Use D4 (GPIO 2)
+#define DHTTYPE DHT11  // DHT 11
+#define SOIL_MOISTURE_PIN A0 // Analog pin connected to soil moisture sensor
+
+
+const char* ssid = "doctor";
+const char* password = "doctor234";
+
+DHT dht(DHTPIN, DHTTYPE);
+
+BlynkTimer timer;
+
+void sendSensorData() {
+  float humidity = dht.readHumidity();
+  float temperature = dht.readTemperature();
+  int soilMoistureValue = analogRead(SOIL_MOISTURE_PIN);
+  float soilMoisturePercentage = map(soilMoistureValue, 1023, 0, 0, 100);
+
+  // Send sensor data to Blynk
+  Blynk.virtualWrite(V0, temperature); // Send temperature to Blynk
+  Blynk.virtualWrite(V1, humidity);    // Send humidity to Blynk
+  Blynk.virtualWrite(V3, soilMoisturePercentage); // Send soil moisture to Blynk
+
+  // Print sensor data to Serial Monitor
+  Serial.print("Humidity: ");
+  Serial.print(humidity);
+  Serial.print(" %, Temperature: ");
+  Serial.print(temperature);
+  Serial.print(" *C, Soil Moisture: ");
+  Serial.print(soilMoisturePercentage);
+  Serial.println(" %");
+
+  // Control the pump based on soil moisture
+  if (soilMoisturePercentage < 40) { 
+     digitalWrite(D5, LOW); // Turn pump ON
+    Serial.println("Pump ON (Auto)");
+  } else {
+     digitalWrite(D5, HIGH); // Turn pump OFF
+    Serial.println("Pump OFF (Auto)");
+  }
+}
+
+BLYNK_WRITE(V12) { // Manual pump control from Blynk
+  if (param.asInt() == 1) {
+      digitalWrite(D5, LOW);
+    Serial.println("Pump ON (Manual)");
+  } else {
+     digitalWrite(D5, HIGH);
+    Serial.println("Pump OFF (Manual)");
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  Serial.println("Setup started");
+
+  // Initialize relay pin
+  pinMode(D5, OUTPUT);
+  digitalWrite(D5, HIGH); // Start with the relay OFF
+
+  // Connect to Wi-Fi
+  WiFi.begin(ssid, password);
+  Serial.print("Connecting to Wi-Fi");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println();
+  Serial.println("Connected to Wi-Fi");
+
+  // Initialize Blynk
+  Blynk.begin(BLYNK_AUTH_TOKEN, ssid, password);
+
+  // Initialize DHT sensor
+  dht.begin();
+
+  // Set up a timer to send sensor data every 5 seconds
+  timer.setInterval(5000L, sendSensorData);
+}
+
+void loop() {
+  Blynk.run(); // Run Blynk
+  timer.run(); // Run timer
+}
