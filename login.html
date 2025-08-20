@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zim Lottery - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Zim Lottery: Buy</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="results.html">Results</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+        <form id="loginForm" onsubmit="return validateLogin()">
+            <label for="username">Username: <input type="text" id="username" name="username" required> </label> 
+            <br>
+            <label for="password">Password: <input type="password" id="password" name="password" required> </label>
+            <br>
+            <button type="submit">Login</button>
+        </form>
+        <p id="loginMessage"></p>
+        <p>Don't have an account? <a href="register.html">Register here</a>.</p>
+    </main>
+    <footer>
+        <p>&copy; 2025 Zim Lottery</p>
+    </footer>
+</body>
+</html>

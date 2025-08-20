@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zim Lottery - Powerball Style</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        .display_ {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .numberInput {
+            width: 50px;
+            margin: 5px;
+            padding: 5px;
+            text-align: center;
+        }
+        #playButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body style="background-image: url(Back.jfif);">
+    <header>
+        <nav>
+            <div class="logo">Zim Lottery: Buy</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="results.html">Results</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+<section class="display_">
+    <div class="container">
+        <h1>Zim Lottery - Powerball Style</h1>
+        <p>Select 5 numbers between 1 and 49, and 1 Powerball number between 1 and 10:</p>
+        <div id="numberInputs">
+            <input type="number" min="1" max="49" class="numberInput">
+            <input type="number" min="1" max="49" class="numberInput">
+            <input type="number" min="1" max="49" class="numberInput">
+            <input type="number" min="1" max="49" class="numberInput">
+            <input type="number" min="1" max="49" class="numberInput">
+            <input type="number" min="1" max="10" class="numberInput" placeholder="Powerball">
+        </div>
+        <button id="playButton">Play</button>
+        <script>
+            document.getElementById('ecocashPaymentForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent form submission
+    
+                const phone = document.getElementById('phone').value;
+                const amount = document.getElementById('amount').value;
+    
+                // Validate inputs
+                if (!phone || !amount) {
+                    alert('Please fill in all fields.');
+                    return;
+                }
+    
+                // Simulate payment processing (replace with actual API call)
+                simulateEcoCashPayment(phone, amount);
+            });
+    
+            function simulateEcoCashPayment(phone, amount) {
+                const paymentStatus = document.getElementById('paymentStatus');
+    
+                // Simulate API call to EcoCash
+                paymentStatus.textContent = 'Processing payment...';
+                setTimeout(() => {
+                    // Simulate a successful payment response
+                    paymentStatus.textContent = `Payment of $${amount} successful! Check your EcoCash for confirmation.`;
+                    paymentStatus.style.color = 'green';
+                    window.location.href = 'powerball.html'; 
+    
+                    // Redirect to a success page or display ticket details
+                    // window.location.href = '/success-page';
+                }, 3000); // Simulate a 3-second delay
+            }
+    
+        </script>
+        <div id="result"></div>
+    </div>
+</section>
+    
+    <script>
+        document.getElementById('playButton').addEventListener('click', function() {
+            const inputs = document.querySelectorAll('.numberInput');
+            const userNumbers = Array.from(inputs).slice(0, 5).map(input => parseInt(input.value, 10));
+            const userPowerball = parseInt(inputs[5].value, 10);
+
+            if (userNumbers.some(num => isNaN(num) || num < 1 || num > 49) || isNaN(userPowerball) || userPowerball < 1 || userPowerball > 10) {
+                alert('Please enter valid numbers.');
+                return;
+            }
+
+            const drawnNumbers = drawNumbers();
+            const drawnPowerball = Math.floor(Math.random() * 10) + 1;
+            const matchedNumbers = userNumbers.filter(num => drawnNumbers.includes(num));
+            const matchedPowerball = userPowerball === drawnPowerball;
+
+            document.getElementById('result').innerHTML = `
+                Drawn Numbers: ${drawnNumbers.join(', ')} (Powerball: ${drawnPowerball})<br>
+                Your Numbers: ${userNumbers.join(', ')} (Powerball: ${userPowerball})<br>
+                You matched ${matchedNumbers.length} numbers: ${matchedNumbers.join(', ')}<br>
+                Powerball ${matchedPowerball ? 'matched!' : 'not matched.'}
+            `;
+        });
+
+        function drawNumbers() {
+            const numbers = [];
+            while (numbers.length < 5) {
+                const num = Math.floor(Math.random() * 49) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            return numbers.sort((a, b) => a - b);
+        }
+    </script>
+</body>
+</html>

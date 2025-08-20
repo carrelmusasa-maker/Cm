@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zim Lottery - Lucky Dip</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #playButton {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Zim Lottery - Lucky Dip</h1>
+        <p>Click "Play" to get random numbers and see if you win!</p>
+        <button id="playButton">Play</button>
+        <div id="result"></div>
+    </div>
+    <script>
+        document.getElementById('playButton').addEventListener('click', function() {
+            const userNumbers = drawNumbers();
+            const drawnNumbers = drawNumbers();
+            const matchedNumbers = userNumbers.filter(num => drawnNumbers.includes(num));
+
+            document.getElementById('result').innerHTML = `
+                Drawn Numbers: ${drawnNumbers.join(', ')}<br>
+                Your Numbers: ${userNumbers.join(', ')}<br>
+                You matched ${matchedNumbers.length} numbers: ${matchedNumbers.join(', ')}
+            `;
+        });
+
+        function drawNumbers() {
+            const numbers = [];
+            while (numbers.length < 6) {
+                const num = Math.floor(Math.random() * 49) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            return numbers.sort((a, b) => a - b);
+        }
+    </script>
+</body>
+</html>

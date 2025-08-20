@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zim Lottery - EcoCash Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #e67e22;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #e67e22;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d35400;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Purchase Zim Lottery Ticket</h1>
+        <p>Enter your details below to pay via EcoCash:</p>
+
+        <form id="ecocashPaymentForm">
+            <label for="phone">EcoCash Phone Number:</label>
+            <input type="text" id="phone" name="phone" placeholder="0771234567" required>
+
+            <label for="amount">Amount (USD):</label>
+            <input type="number" id="amount" name="amount" placeholder="10" required>
+
+            <button type="submit">Pay with EcoCash</button>
+        </form>
+
+        <p id="paymentStatus"></p>
+    </div>
+
+    <script>
+        document.getElementById('ecocashPaymentForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const phone = document.getElementById('phone').value;
+            const amount = document.getElementById('amount').value;
+
+            // Validate inputs
+            if (!phone || !amount) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            // Simulate payment processing (replace with actual API call)
+            simulateEcoCashPayment(phone, amount);
+        });
+
+        function simulateEcoCashPayment(phone, amount) {
+            const paymentStatus = document.getElementById('paymentStatus');
+
+            // Simulate API call to EcoCash
+            paymentStatus.textContent = 'Processing payment...';
+            setTimeout(() => {
+                // Simulate a successful payment response
+                paymentStatus.textContent = `Payment of $${amount} successful! Check your EcoCash for confirmation.`;
+                paymentStatus.style.color = 'green';
+                window.location.href = 'powerball.html'; 
+
+                // Redirect to a success page or display ticket details
+                // window.location.href = '/success-page';
+            }, 3000); // Simulate a 3-second delay
+        }
+
+    </script>
+</body>
+</html>

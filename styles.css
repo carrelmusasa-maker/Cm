@@ -1,0 +1,336 @@
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #1a1af3;
+    color: #333;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url(Back.jfif);
+    padding: 20px;
+   
+}
+
+header {
+    background-color: #333;
+    color: #d35400;
+    padding: 10px 0;
+  
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav .logo {
+    font-size: 24px;
+    font-weight: 600;
+    padding-left: 5%;
+    color: #d35400;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), url('https://via.placeholder.com/1200x400'));
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 20px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.cta-button {
+    background-color: #ffcc00;
+    color: #333;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #e6b800;
+}
+
+/* Featured Tickets Section */
+.featured-tickets {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.featured-tickets h2 {
+    font-size: 36px;
+    margin-bottom: 40px;
+}
+
+.ticket-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.ticket-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 200px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.ticket-card:hover {
+    transform: translateY(-10px);
+}
+
+.ticket-card img {
+    width: 100%;
+    height: auto;
+}
+
+.ticket-card h3 {
+    font-size: 20px;
+    margin: 15px 0 10px;
+}
+
+.ticket-card p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 15px;
+}
+button {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 25px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button {
+    display: inline-block;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.buy-button:hover {
+    background-color: #555;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+footer p {
+    margin: 0;
+}
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+#ticket input {
+    width: 50px;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+}
+
+button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+/* Login Form Styles */
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 10%;
+}
+
+#loginForm label {
+    margin: 10px 0 5px 0;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+#loginForm input {
+    padding: 8px;
+    width: 200px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#loginForm button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#loginForm button:hover {
+    background-color: #555;
+}
+
+#loginMessage {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+}
+/* Registration Form Styles */
+#registerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#registerForm label {
+    margin: 10px 0 5px 0;
+}
+
+#registerForm input {
+    padding: 8px;
+    width: 200px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+#payment-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 10%;
+}
+
+#payment-form label {
+    margin: 10px 0 5px 0;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+#payment-form input {
+    padding: 8px;
+    width: 200px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#payment-form button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#payment-form button:hover {
+    background-color: #555;
+}
+
+#loginMessage {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+}
+
+
+#registerForm button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#registerForm button:hover {
+    background-color: #555;
+}
+
+#registerMessage {
+    margin-top: 20px;
+    color: red;
+    font-weight: bold;
+}
